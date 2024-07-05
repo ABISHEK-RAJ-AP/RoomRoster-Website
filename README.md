@@ -2,8 +2,6 @@
 
 Welcome to **RoomRoster**, an innovative web application designed to streamline the management and allocation of accommodations in hostels. RoomRoster aims to digitalize the hospitality process, making it more efficient and user-friendly.
 
-![RoomRoster Logo](static/images/logo.png)
-
 ## Features
 
 - **Responsive Design**: The application is fully responsive and adapts seamlessly to different screen sizes, providing an optimal user experience on both desktop and mobile devices.
