@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospitality Digitalization</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure full height of viewport */
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1c1c1c;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 100; /* Ensure header is above other content */
+        }
+        header img {
+            height: 50px;
+        }
+        .header-title {
+            display: flex;
+            align-items: center;
+            margin-left: 10px; /* Adjust as needed */
+        }
+        .header-title h2 {
+            color: #00e676;
+            margin: 0;
+            font-size: 1.5em;
+        }
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+        header nav ul li {
+            margin: 0 15px;
+            position: relative;
+        }
+        header nav ul li a {
+            text-decoration: none;
+            color: #00e676;
+            font-size: 1.1em;
+            transition: color 0.3s ease-in-out;
+        }
+        header nav ul li a:hover {
+            color: #00c853;
+        }
+        header nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #1c1c1c;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        header nav ul li:hover ul {
+            display: block;
+        }
+        header nav ul li ul li {
+            margin: 0;
+        }
+        header nav ul li ul li a {
+            padding: 5px 10px;
+        }
+        .carousel {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+            z-index: 10; /* Ensure carousel is above main content */
+        }
+        .carousel img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .carousel img.active {
+            opacity: 1;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            background: rgba(18, 18, 18, 0.8);
+            margin-top: -150px;
+            flex-grow: 1; /* Ensure main content expands to fill remaining space */
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #00e676;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        table {
+            width: 80%;
+            max-width: 800px;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        th {
+            background: #00e676;
+            color: #121212;
+        }
+        td {
+            background: #212121;
+            color: #e0e0e0;
+        }
+        th:first-child, td:first-child {
+            padding-left: 20px;
+        }
+        th:last-child, td:last-child {
+            padding-right: 20px;
+        }
+        button {
+            font-size: 1.2em;
+            background: #00e676;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+            box-shadow: 0 0 10px #00e676, 0 0 20px #00e676, 0 0 30px #00e676;
+            color: #121212;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #00c853;
+            transform: scale(1.1);
+        }
+        a {
+            font-size: 1.2em;
+            color: #00e676;
+            text-decoration: none;
+            background: rgba(0, 230, 118, 0.2);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+            animation: fadeIn 1.5s ease-in-out 1s;
+            box-shadow: 0 0 10px #00e676, 0 0 20px #00e676, 0 0 30px #00e676;
+        }
+        a:hover {
+            background: rgba(0, 230, 118, 0.4);
+            transform: scale(1.1);
+        }
+        footer {
+            background: #1c1c1c;
+            padding: 10px 20px;
+            text-align: center;
+            color: #00e676;
+            width: 100%;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
+            margin-top: auto; /* Push footer to the bottom */
+            z-index: 100; /* Ensure footer is above other content */
+        }
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        .user-actions button {
+            font-size: 1em;
+            background: #00e676;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+            box-shadow: 0 0 10px #00e676, 0 0 20px #00e676, 0 0 30px #00e676;
+            color: #121212;
+            margin-left: 10px;
+        }
+        .user-actions button:hover {
+            background: #00c853;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo"> <!-- Adjust path to your logo -->
+        <div class="header-title">
+            <h2>RoomRoster</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <button>Login</button>
+            <!-- Add more buttons or links for signup, profile, etc. as needed -->
+        </div>
+    </header>
+    <div class="carousel">
+        <img src="{{ url_for('static', filename='images/image1.jpg') }}" class="active" alt="Image 1">
+        <img src="{{ url_for('static', filename='images/image2.jpg') }}" alt="Image 2">
+        <img src="{{ url_for('static', filename='images/image3.jpg') }}" alt="Image 3">
+    </div>
+    <br>
+
+    <main>
+        <br><br><br><br><br><br>
+        <form action="/" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+            <div style="margin-bottom: 15px; text-align: center;">
+                <label for="group_file" style="display: block; margin-bottom: 5px; font-size: 1.2em; color: #00e676;">Group Information CSV:</label>
+                <input type="file" id="group_file" name="group_file" accept=".csv" required style="padding: 10px; border: 2px solid #00e676; border-radius: 5px; background: none; color: #00e676; font-size: 1em; width: 300px; max-width: 100%; transition: border-color 0.3s ease-in-out;">
+            </div>
+            <div style="margin-bottom: 15px; text-align: center;">
+                <label for="hostel_file" style="display: block; margin-bottom: 5px; font-size: 1.2em; color: #00e676;">Hostel Information CSV:</label>
+                <input type="file" id="hostel_file" name="hostel_file" accept=".csv" required style="padding: 10px; border: 2px solid #00e676; border-radius: 5px; background: none; color: #00e676; font-size: 1em; width: 300px; max-width: 100%; transition: border-color 0.3s ease-in-out;">
+            </div>
+            <button type="submit" style="font-size: 1.2em; background: #00e676; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background 0.3s ease-in-out, transform 0.3s ease-in-out; box-shadow: 0 0 10px #00e676, 0 0 20px #00e676, 0 0 30px #00e676; color: #121212; margin-top: 20px;">Upload</button>
+        </form>
+        <br>
+        {% if tables %}
+            <table style="width: 80%; max-width: 800px; margin-top: 20px; border-collapse: collapse; border-radius: 5px; overflow: hidden; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); background: rgba(255, 255, 255, 0.1);">
+                <tbody>
+                    {{ tables|safe }}
+                </tbody>
+            </table>
+            <br>
+            <a href="/download" style="font-size: 1.2em; color: #00e676; text-decoration: none; background: rgba(0, 230, 118, 0.2); padding: 10px 20px; border-radius: 5px; transition: background 0.3s ease-in-out, transform 0.3s ease-in-out; animation: fadeIn 1.5s ease-in-out 1s; box-shadow: 0 0 10px #00e676, 0 0 20px #00e676, 0 0 30px #00e676;">Download Allocations CSV</a>
+        {% endif %}
+    </main>
+    <footer style="background: #1c1c1c; padding: 10px 20px; text-align: center; color: #00e676; width: 100%; box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5); margin-top: auto; z-index: 100;">
+        <p>&copy; 2024 Abishek AP Balance. All rights reserved.</p>
+    </footer>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel img');
+        const maxSlides = slides.length;
+
+        function changeSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % maxSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(changeSlide, 5000); // Change slide every 5 seconds
+    </script>
+</body>
+</html>
